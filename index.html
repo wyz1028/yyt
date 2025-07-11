@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <title>×î½üÓªÒµÌü²éÑ¯</title>
+  <title>æœ€è¿‘è¥ä¸šå…æŸ¥è¯¢</title>
   <style>
     body {
-      font-family: "PingFang SC", "Î¢ÈíÑÅºÚ", Arial, sans-serif;
+      font-family: "PingFang SC", "å¾®è½¯é›…é»‘", Arial, sans-serif;
       background: #f6f8fa;
       margin: 0;
       padding: 0;
@@ -115,38 +115,38 @@
 </head>
 <body>
   <div class="container">
-    <h2>²éÕÒÀëÎÒ×î½üµÄÓªÒµÌü</h2>
-    <button class="btn" onclick="getLocation()">»ñÈ¡µ±Ç°Î»ÖÃ²¢¼ÆËã</button>
+    <h2>æŸ¥æ‰¾ç¦»æˆ‘æœ€è¿‘çš„è¥ä¸šå…</h2>
+    <button class="btn" onclick="getLocation()">è·å–å½“å‰ä½ç½®å¹¶è®¡ç®—</button>
     <div class="result" id="result"></div>
     <div class="stores-list" id="storesList"></div>
   </div>
   <script>
-    // ÓªÒµÌüĞÅÏ¢
+    // è¥ä¸šå…ä¿¡æ¯
     const stores = [
       {
-        name: "êÉ»ÔÍ¨Ñ¶",
-        address: "×Í´¨ÇøÀ¥ÂØÕò´Å´å´å(´Å´åÎÀÉúÔºÎ÷300Ã×ÈªÍõÂ·±±)",
+        name: "æ™Ÿè¾‰é€šè®¯",
+        address: "æ·„å·åŒºæ˜†ä»‘é•‡ç£æ‘æ‘(ç£æ‘å«ç”Ÿé™¢è¥¿300ç±³æ³‰ç‹è·¯åŒ—)",
         lat: 36.573964,
         lng: 117.944964
       },
       {
-        name: "Ë³´ïÍ¨Ñ¶",
-        address: "×Í´¨ÇøÁúÈªÕòº«Ê¢´åÎ¯¶ÔÃæË³´ïÓªÒµÌü£¨ºşÄÏÂ·98ºÅ£©",
+        name: "é¡ºè¾¾é€šè®¯",
+        address: "æ·„å·åŒºé¾™æ³‰é•‡éŸ©ç››æ‘å§”å¯¹é¢é¡ºè¾¾è¥ä¸šå…ï¼ˆæ¹–å—è·¯98å·ï¼‰",
         lat: 36.586964,
         lng: 117.993964
       },
       {
-        name: "ê»³ÎÍ¨Ñ¶",
-        address: "×Í´¨Çø×Í³Ç¶«Â·47ºÅ102ÉÌÆÌ",
+        name: "æ˜Šæ¾„é€šè®¯",
+        address: "æ·„å·åŒºæ·„åŸä¸œè·¯47å·102å•†é“º",
         lat: 36.634964,
         lng: 118.003964
       }
     ];
 
-    // ¼ÆËãÁ½µã¼ä¾àÀë£¨Haversine¹«Ê½£¬µ¥Î»£ºÃ×£©
+    // è®¡ç®—ä¸¤ç‚¹é—´è·ç¦»ï¼ˆHaversineå…¬å¼ï¼Œå•ä½ï¼šç±³ï¼‰
     function getDistance(lat1, lng1, lat2, lng2) {
       const toRad = d => d * Math.PI / 180;
-      const R = 6371000; // µØÇò°ë¾¶£¬µ¥Î»Ã×
+      const R = 6371000; // åœ°çƒåŠå¾„ï¼Œå•ä½ç±³
       const dLat = toRad(lat2 - lat1);
       const dLng = toRad(lng2 - lng1);
       const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
@@ -159,10 +159,10 @@
     function getLocation() {
       const resultDiv = document.getElementById('result');
       const storesListDiv = document.getElementById('storesList');
-      resultDiv.innerHTML = '<div class="loading"></div>ÕıÔÚ»ñÈ¡ÄúµÄÎ»ÖÃ...';
+      resultDiv.innerHTML = '<div class="loading"></div>æ­£åœ¨è·å–æ‚¨çš„ä½ç½®...';
       storesListDiv.innerHTML = '';
       if (!navigator.geolocation) {
-        resultDiv.innerHTML = "µ±Ç°ä¯ÀÀÆ÷²»Ö§³Ö¶¨Î»¹¦ÄÜ¡£";
+        resultDiv.innerHTML = "å½“å‰æµè§ˆå™¨ä¸æ”¯æŒå®šä½åŠŸèƒ½ã€‚";
         return;
       }
       navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true });
@@ -172,37 +172,37 @@
       const userLat = position.coords.latitude;
       const userLng = position.coords.longitude;
 
-      // ¼ÆËã¾àÀë
+      // è®¡ç®—è·ç¦»
       const storesWithDist = stores.map(store => ({
         ...store,
         dist: getDistance(userLat, userLng, store.lat, store.lng)
       }));
 
-      // ÕÒµ½×î½üµÄ
+      // æ‰¾åˆ°æœ€è¿‘çš„
       const nearest = storesWithDist.reduce((min, curr) => curr.dist < min.dist ? curr : min, storesWithDist[0]);
 
-      // ÏÔÊ¾µ±Ç°Î»ÖÃ
+      // æ˜¾ç¤ºå½“å‰ä½ç½®
       document.getElementById('result').innerHTML =
-        `Äúµ±Ç°Î»ÖÃ£º<br>Î³¶È£º${userLat.toFixed(6)}£¬¾­¶È£º${userLng.toFixed(6)}`;
+        `æ‚¨å½“å‰ä½ç½®ï¼š<br>çº¬åº¦ï¼š${userLat.toFixed(6)}ï¼Œç»åº¦ï¼š${userLng.toFixed(6)}`;
 
-      // ÏÔÊ¾ËùÓĞÓªÒµÌü¾àÀë
+      // æ˜¾ç¤ºæ‰€æœ‰è¥ä¸šå…è·ç¦»
       const storesListDiv = document.getElementById('storesList');
       storesListDiv.innerHTML = storesWithDist.map(store => `
         <div class="store-card${store.name === nearest.name ? ' nearest' : ''}">
           <div class="store-name">${store.name}</div>
           <div class="store-address">${store.address}</div>
-          <div class="store-distance">¾àÀëÄúÔ¼ ${(store.dist/1000).toFixed(2)} ¹«Àï</div>
-          ${store.name === nearest.name ? '<div class="nearest-badge">×î½ü</div>' : ''}
+          <div class="store-distance">è·ç¦»æ‚¨çº¦ ${(store.dist/1000).toFixed(2)} å…¬é‡Œ</div>
+          ${store.name === nearest.name ? '<div class="nearest-badge">æœ€è¿‘</div>' : ''}
         </div>
       `).join('');
     }
 
     function error(err) {
-      let msg = "ÎŞ·¨»ñÈ¡ÄúµÄÎ»ÖÃ";
-      if (err.code === 1) msg += "£ºÓÃ»§¾Ü¾øÁË¶¨Î»ÇëÇó¡£";
-      else if (err.code === 2) msg += "£ºÎ»ÖÃĞÅÏ¢²»¿ÉÓÃ¡£";
-      else if (err.code === 3) msg += "£º»ñÈ¡Î»ÖÃ³¬Ê±¡£";
-      else msg += "£º" + err.message;
+      let msg = "æ— æ³•è·å–æ‚¨çš„ä½ç½®";
+      if (err.code === 1) msg += "ï¼šç”¨æˆ·æ‹’ç»äº†å®šä½è¯·æ±‚ã€‚";
+      else if (err.code === 2) msg += "ï¼šä½ç½®ä¿¡æ¯ä¸å¯ç”¨ã€‚";
+      else if (err.code === 3) msg += "ï¼šè·å–ä½ç½®è¶…æ—¶ã€‚";
+      else msg += "ï¼š" + err.message;
       document.getElementById('result').innerHTML = msg;
       document.getElementById('storesList').innerHTML = '';
     }
